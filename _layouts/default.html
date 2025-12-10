@@ -1,64 +1,14 @@
----
-layout: default
-title: "神奇201-2"
-description: "欢迎来到我们的宿舍空间"
----
-
-<h1>欢迎来到神奇201-2！</h1>
-
-<p>这里是我们的宿舍故事分享空间</p >
-
-<div class="sections">
-    <section class="card">
-        <h2>🛏️ 睡前准备</h2>
-        <p>入睡前的准备工作和小贴士</p >
-    </section>
+<!-- _layouts/default.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+    {% include head.html %}
+<body>
+    {% include header.html %}
     
-    <section class="card">
-        <h2>💤 入睡指南</h2>
-        <p>如何快速入睡的技巧分享</p >
-    </section>
+    <main>
+        {{ content }}
+    </main>
     
-    <section class="card">
-        <h2>👨‍🎓 神奇舍友</h2>
-        <h3>周浩宇</h3>
-        <p>舍友介绍和趣事</p >
-    </section>
-    
-    <section class="card">
-        <h2>🎵 夜间趣事</h2>
-        <p>呼噜交响乐和其他夜间故事</p >
-    </section>
-</div>
-
-<style>
-.sections {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.card {
-    background: white;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 1.5rem;
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.card h2 {
-    margin-top: 0;
-    color: var(--primary-color);
-}
-
-.card h3 {
-    color: #6b7280;
-    margin: 0.5rem 0;
-}
-</style>
+    {% include footer.html %}
+</body>
+</html>
