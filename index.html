@@ -6,13 +6,13 @@ description: "欢迎来到我们的宿舍空间"
 
 <!-- 欢迎卡片 -->
 <div class="card">
-    <h1><span class="icon">🏠</span>欢迎来到神奇201-2！</h1>
+    <h1><span class="icon">�</span>欢迎来到神奇201-2！</h1>
     <p>这里是神奇宝贝集中营</p >
 </div>
 
 <!-- 睡前准备 -->
 <div class="card">
-    <h2><span class="icon">🛏️</span>准备</h2>
+    <h2><span class="icon">�️</span>准备</h2>
     <p>通宵前的准备工作和小贴士，让每个夜晚都舒适安宁。</p >
     <ul>
         <li><strong>整理床铺</strong>：调整枕头高度，预备玩手机姿势</li>
@@ -24,7 +24,7 @@ description: "欢迎来到我们的宿舍空间"
 
 <!-- 入睡指南 -->
 <div class="card">
-    <h2><span class="icon">💤</span>通宵指南</h2>
+    <h2><span class="icon">�</span>通宵指南</h2>
     <p>如何快速通宵的技巧分享，告别瞌睡困扰。</p >
     <ul>
         <li><strong>刷视频法</strong>：玩转抖音B站</li>
@@ -36,7 +36,7 @@ description: "欢迎来到我们的宿舍空间"
 
 <!-- 神奇舍友 -->
 <div class="card">
-    <h2><span class="icon">👨‍🎓</span>神奇舍友</h2>
+    <h2><span class="icon">�‍�</span>神奇舍友</h2>
     <h3>周浩宇</h3>
     <p>猪鼻</p >
     <ul>
@@ -49,7 +49,7 @@ description: "欢迎来到我们的宿舍空间"
 
 <!-- 夜间趣事 -->
 <div class="card">
-    <h2><span class="icon">🎵</span>夜间趣事</h2>
+    <h2><span class="icon">�</span>夜间趣事</h2>
     <h3>呼噜交响乐</h3>
     <p>每个夜晚都是一场独特的音乐会，不同节奏的呼噜声交织成奇妙的交响乐。</p >
     <ul>
@@ -68,82 +68,3 @@ description: "欢迎来到我们的宿舍空间"
         <li>深夜分享的人生哲理（宇宙的起源...）</li>
     </ul>
 </div>
-
-<!-- 延迟加载背景图片的JavaScript -->
-<script>
-(function() {
-    // 等待页面完全加载
-    function initBackground() {
-        console.log('🚀 开始加载背景图片...');
-        
-        // 创建图片对象进行预加载
-        var bgImage = new Image();
-        
-        // 图片加载成功回调
-        bgImage.onload = function() {
-            console.log('✅ 背景图片加载完成，尺寸:', this.width + 'x' + this.height);
-            
-            // 延迟300ms让文字完全显示，然后添加背景
-            setTimeout(function() {
-                document.body.classList.add('bg-loaded');
-                console.log('🎨 背景图片已应用');
-            }, 300);
-        };
-        
-        // 图片加载失败回调
-        bgImage.onerror = function() {
-            console.log('⚠️ 背景图片加载失败，使用纯色背景');
-            // 可以在这里添加备用方案
-        };
-        
-        // 延迟500ms开始加载图片，让文字先显示
-        setTimeout(function() {
-            console.log('📥 开始下载背景图片...');
-            bgImage.src = 'assets/images/1.jpg';
-        }, 500);
-    }
-    
-    // 检测页面加载状态
-    if (document.readyState === 'complete') {
-        // 页面已加载完成，直接执行
-        initBackground();
-    } else {
-        // 等待页面完全加载
-        window.addEventListener('load', initBackground);
-    }
-    
-    // 可选：添加加载进度提示
-    window.addEventListener('DOMContentLoaded', function() {
-        console.log('📄 页面内容已加载完成');
-    });
-})();
-</script>
-
-<!-- 简单的加载状态样式 -->
-<style>
-/* 初始加载状态提示（可选） */
-body::after {
-    content: '正在加载背景...';
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1000;
-}
-
-body.bg-loaded::after {
-    content: '背景加载完成 ✓';
-    opacity: 0.8;
-    animation: fadeOut 2s forwards 1s;
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; }
-}
-</style>
