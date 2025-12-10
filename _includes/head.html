@@ -77,16 +77,20 @@
         
         /* 卡片基础样式 */
         .card {
-            background: rgba(248, 250, 252, 0.95);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px;
-            margin-bottom: 24px;
-            box-shadow: var(--shadow);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease, var(--transition);
-        }
+    background: rgba(248, 250, 252, 0.85);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease, all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;    /* 新增 */
+    overflow: hidden;      /* 新增 */
+    backdrop-filter: blur(4px);  /* 确保有毛玻璃效果 */
+    -webkit-backdrop-filter: blur(4px);
+}
         
         .card-visible {
             opacity: 1;
@@ -192,12 +196,46 @@
                     }
                 }
                 
-                /* 卡片悬停效果 */
-                .card:hover {
-                    transform: translateY(-4px);
-                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-                    border-color: var(--primary);
-                    background: rgba(248, 250, 252, 0.98);
+                /* 卡片悬停效果 - 方案5：微妙发光效果 */
+.card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 
+        0 10px 30px rgba(37, 99, 235, 0.15),
+        0 0 0 1px rgba(37, 99, 235, 0.1);
+    background: rgba(248, 250, 252, 0.92);
+}
+
+/* 添加一个微妙的顶部发光效果 */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+/* 暗色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .card:hover {
+        box-shadow: 
+            0 10px 30px rgba(59, 130, 246, 0.2),
+            0 0 0 1px rgba(59, 130, 246, 0.15);
+        background: rgba(31, 41, 55, 0.95);
+    }
+    
+    .card::before {
+        background: linear-gradient(90deg, var(--primary-dark), var(--secondary));
+    }
+}
                 }
                 
                 /* 导航链接样式 */
