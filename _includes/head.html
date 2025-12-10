@@ -36,25 +36,29 @@
             box-sizing: border-box;
         }
         
-        /* ========== 基础布局 ========== */
+        /* ========== 性能优化背景 ========== */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
+            /* 先显示纯色背景，提升加载速度 */
+            background-color: #f0f4f8;
             
-            /* 背景图片设置 */
-            background-image: url('/assets/images/20250605013401174905844197801.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            
-            /* 原有布局设置 */
+            /* 布局设置 */
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             min-height: 100vh;
             position: relative;
+            
+            /* 平滑过渡效果 */
+            transition: background-image 0.5s ease;
+        }
+        
+        /* 图片加载后的类 */
+        .bg-loaded {
+            background-image: url('assets/images/1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
         
         /* 半透明遮罩层 */
@@ -65,9 +69,15 @@
             left: 0;
             width: 100%;
             height: 100%;
+            
+            /* 中等透明度白色遮罩 */
             background-color: rgba(255, 255, 255, 0.65);
+            
+            /* 轻微模糊效果 */
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(2px);
+            
+            /* 确保在背景图之上，内容之下 */
             z-index: -1;
         }
         
@@ -95,7 +105,7 @@
         
         /* ========== 卡片样式 ========== */
         .card {
-            /* 半透明背景 */
+            /* 半透明背景 + 毛玻璃效果 */
             background: rgba(248, 250, 252, 0.80);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
@@ -185,6 +195,16 @@
                 padding: 16px;
             }
             
+            /* 手机端背景改为滚动，性能更好 */
+            .bg-loaded {
+                background-attachment: scroll;
+            }
+            
+            /* 手机端加深遮罩，提高可读性 */
+            body::before {
+                background-color: rgba(255, 255, 255, 0.75);
+            }
+            
             nav {
                 padding: 14px 20px;
                 margin-bottom: 30px;
@@ -211,8 +231,18 @@
         }
         
         @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+            
+            /* 小屏幕更深遮罩 */
+            body::before {
+                background-color: rgba(255, 255, 255, 0.80);
+            }
+            
             .card {
                 padding: 20px;
+                margin-bottom: 16px;
             }
             
             .card h1 {
@@ -221,6 +251,18 @@
             
             .card h2 {
                 font-size: 22px;
+            }
+            
+            .card p {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+        }
+        
+        /* 横屏手机优化 */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .bg-loaded {
+                background-attachment: fixed; /* 横屏可以保持fixed */
             }
         }
     </style>
