@@ -1,3 +1,4 @@
+<!-- _includes/head.html -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,14 +23,8 @@
             --text-light: #6b7280;
             --bg-color: #ffffff;
             --border-color: #e5e7eb;
-            --card-bg: #f8fafc; /* 卡片背景色 - 浅灰色 */
+            --card-bg: #f8fafc;
             --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-        
-        
-
         }
         
         * {
@@ -63,75 +58,39 @@
             margin-right: 2rem;
             font-weight: 500;
             font-size: 1.1rem;
-            transition: opacity 0.3s;
         }
         
         nav a:hover {
-            opacity: 0.9;
             text-decoration: underline;
         }
         
-        /* ========== 标题层级样式 ========== */
+        /* 标题样式 */
         h1 {
             color: var(--primary-color);
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            text-align: center;
         }
         
         h2 {
-            margin-top: 3rem;
-            margin-bottom: 1.25rem;
             color: var(--primary-dark);
-            font-size: 2.2rem;
-            font-weight: 700;
-            border-bottom: 3px solid var(--border-color);
-            padding-bottom: 0.75rem;
-        }
-        
-        h3 {
+            font-size: 2rem;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            color: #374151;
-            font-size: 1.8rem;
-            font-weight: 600;
-            padding-left: 0.5rem;
-            border-left: 4px solid var(--primary-color);
         }
         
-        h4 {
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-            color: #4b5563;
-            font-size: 1.4rem;
-            font-weight: 500;
+        /* 卡片样式 */
+        .module-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
         }
         
-        /* 段落和文字 */
-        p {
-            margin-bottom: 1.25rem;
-            font-size: 1.125rem;
-            line-height: 1.8;
-            color: var(--text-color);
-        }
-        
-        /* 强调文字 */
-        strong {
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-        
-        /* 列表样式 */
-        ul, ol {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-        
-        li {
-            margin-bottom: 0.5rem;
-            font-size: 1.125rem;
+        .module-card h2 {
+            color: var(--primary-color);
+            margin-top: 0;
         }
         
         /* 页脚样式 */
@@ -141,122 +100,17 @@
             border-top: 2px solid var(--border-color);
             color: var(--text-light);
             text-align: center;
-            font-size: 0.95rem;
         }
-
-        /* ========== 卡片模块样式 ========== */
-.module-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-}
-
-.module-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-color: var(--primary-color);
-}
-
-.module-card h2,
-.module-card h3,
-.module-card h4 {
-    border: none;
-    padding-left: 0;
-    margin-top: 0;
-}
-
-.module-card h2 {
-    color: var(--primary-color);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-.module-card h3 {
-    color: #374151;
-    font-size: 1.4rem;
-    margin-bottom: 0.75rem;
-}
-
-.module-card p {
-    color: var(--text-light);
-    font-size: 1.05rem;
-    line-height: 1.7;
-}
-
-/* 卡片内的列表 */
-.module-card ul,
-.module-card ol {
-    padding-left: 1.5rem;
-}
-
-/* 卡片图标样式 */
-.card-icon {
-    display: inline-block;
-    font-size: 1.5rem;
-    margin-right: 0.75rem;
-    vertical-align: middle;
-}
-
-/* 网格布局（如果有多列） */
-.modules-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
         
-        /* ========== 响应式设计 ========== */
+        /* 响应式设计 */
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
             }
             
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            h3 {
-                font-size: 1.5rem;
-            }
-            
-            nav {
-                padding: 0.75rem;
-            }
-            
-            nav a {
-                display: inline-block;
-                margin: 0.5rem 1rem 0.5rem 0;
-                font-size: 1rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            h2 {
-                font-size: 1.5rem;
-            }
-            
-            h3 {
-                font-size: 1.3rem;
-            }
-            
             nav a {
                 display: block;
                 margin: 0.75rem 0;
-                padding: 0.75rem;
-                background: rgba(255, 255, 255, 0.1);
-                border-radius: 6px;
             }
         }
     </style>
