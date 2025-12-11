@@ -49,7 +49,114 @@
         <span class="volume-icon">🔊</span>
     </div>
 </div>
-
+<script>
+// 修复电脑端无声音问题
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('bg-music');
+    const toggleBtn = document.getElementById('music-toggle');
+    const volumeSlider = document.getElementById('volume-slider');
+    const musicIcon = toggleBtn.querySelector('.music-icon');
+    const musicText = toggleBtn.querySelector('.music-text');
+    
+    let isPlaying = false;
+    let audioActivated = false;
+    
+    // 1. 强制激活音频上下文（电脑端关键代码）
+    function activateAudioForDesktop() {
+        // 方法1：创建虚拟音频强制激活
+        const silentAudio = new Audio();
+        silentAudio.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==";
+        silentAudio.volume = 0;
+        silentAudio.play().then(() => {
+            silentAudio.pause();
+            audioActivated = true;
+            console.log('✅ 音频上下文强制激活成功');
+        }).catch(e => {
+            console.log('❌ 方法1失败，使用方法2');
+            // 方法2：使用Web Audio API
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const audioContext = new AudioContext();
+                const oscillator = audioContext.createOscillator();
+                oscillator.connect(audioContext.destination);
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.001);
+                audioActivated = true;
+                console.log('✅ Web Audio API激活成功');
+            } catch (err) {
+                console.log('❌ 所有自动激活方法失败，需要用户点击');
+            }
+        });
+    }
+    
+    // 2. 初始化时尝试激活
+    activateAudioForDesktop();
+    
+    // 3. 用户点击页面时再次激活
+    document.addEventListener('click', function() {
+        if (!audioActivated) {
+            audio.muted = true;
+            audio.volume = 0;
+            audio.play().then(() => {
+                audio.pause();
+                audio.muted = false;
+                audio.volume = volumeSlider.value;
+                audioActivated = true;
+                musicText.textContent = '播放音乐';
+                toggleBtn.style.opacity = '1';
+                localStorage.setItem('audioActivated', 'true');
+            });
+        }
+    }, { once: true });
+    
+    // 4. 播放/暂停按钮点击
+    toggleBtn.addEventListener('click', function(e) {
+        if (!audioActivated) {
+            e.preventDefault();
+            alert('🎵 请先点击页面任意位置激活音频，然后再次点击播放');
+            return;
+        }
+        
+        if (isPlaying) {
+            audio.pause();
+            musicIcon.textContent = '🎵';
+            musicText.textContent = '播放音乐';
+            toggleBtn.classList.remove('playing');
+        } else {
+            // 电脑端特别处理：先设置音量再播放
+            audio.volume = volumeSlider.value;
+            audio.play().then(() => {
+                musicIcon.textContent = '⏸️';
+                musicText.textContent = '暂停音乐';
+                toggleBtn.classList.add('playing');
+            }).catch(e => {
+                console.log('播放失败:', e);
+                alert('播放失败，请刷新页面重试');
+            });
+        }
+        isPlaying = !isPlaying;
+    });
+    
+    // 5. 音量控制
+    volumeSlider.addEventListener('input', function() {
+        audio.volume = this.value;
+        localStorage.setItem('bgMusicVolume', this.value);
+    });
+    
+    // 6. 加载保存的设置
+    if (localStorage.getItem('audioActivated') === 'true') {
+        audioActivated = true;
+        musicText.textContent = '播放音乐';
+        toggleBtn.style.opacity = '1';
+    }
+    
+    const savedVolume = localStorage.getItem('bgMusicVolume');
+    if (savedVolume) {
+        audio.volume = savedVolume;
+        volumeSlider.value = savedVolume;
+    }
+});
+</script>
 <style>
 /* 音乐播放器样式 - 与您的网站风格一致 */
 .music-player {
