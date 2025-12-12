@@ -1,78 +1,79 @@
-// website/music.js
-class BackgroundMusic {
-    constructor() {
-        this.audio = new Audio('../assets/123.mp3');
-        this.audio.volume = 0.3; // 30%音量
-        this.audio.loop = true;
-        this.isPlaying = false;
+// website/music.js - 优化版本
+document.addEventListener('DOMContentLoaded', function() {
+    // 延迟加载音乐
+    setTimeout(() => {
+        initMusicPlayer();
+    }, 1000); // 页面加载1秒后再初始化音乐
+        
+    function initMusicPlayer() {
+        const audio = new Audio('../assets/123.mp3');
+        audio.preload = 'none'; // 不预加载
+        audio.volume = 0.2; // 更低的音量
+        audio.loop = true;
         
         // 创建控制按钮
-        this.createButton();
+        const musicBtn = document.createElement('button');
+        musicBtn.className = 'music-btn';
+        musicBtn.id = 'musicToggle';
+        musicBtn.innerHTML = '🎵';
+        musicBtn.title = '点击播放/暂停背景音乐';
         
-        // 尝试自动播放（需要用户交互）
-        this.setupAutoplay();
-    }
-    
-    createButton() {
-        const btn = document.createElement('button');
-        btn.className = 'music-btn';
-        btn.id = 'musicToggle';
-        btn.innerHTML = '🔇';
+        const musicControl = document.createElement('div');
+        musicControl.className = 'music-control';
+        musicControl.appendChild(musicBtn);
+        document.body.appendChild(musicControl);
         
-        const container = document.createElement('div');
-        container.className = 'music-control';
-        container.appendChild(btn);
-        document.body.appendChild(container);
+        // 播放状态
+        let isPlaying = false;
         
-        // 点击事件
-        btn.addEventListener('click', () => this.toggle());
-        
-        // 监听音乐状态
-        this.audio.addEventListener('play', () => {
-            btn.innerHTML = '🎵';
-            this.isPlaying = true;
-        });
-        
-        this.audio.addEventListener('pause', () => {
-            btn.innerHTML = '🔇';
-            this.isPlaying = false;
-        });
-        
-        // 错误处理
-        this.audio.addEventListener('error', (e) => {
-            console.error('音乐加载失败:', e);
-            btn.innerHTML = '❌';
-            btn.title = '音乐文件加载失败，请检查路径';
-        });
-    }
-    
-    toggle() {
-        if (this.isPlaying) {
-            this.audio.pause();
-        } else {
-            this.audio.play().catch(e => {
-                console.log('播放失败:', e);
-                alert('点击页面任意位置后，再点击播放按钮');
-            });
-        }
-    }
-    
-    setupAutoplay() {
-        // 用户第一次点击页面时自动播放
-        const playOnInteraction = () => {
-            if (!this.isPlaying) {
-                this.audio.play().catch(e => {
-                    console.log('自动播放被阻止，需要用户手动点击');
+        // 点击控制
+        musicBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                musicBtn.innerHTML = '🔇';
+            } else {
+                audio.play().then(() => {
+                    musicBtn.innerHTML = '🎵';
+                    isPlaying = true;
+                }).catch(error => {
+                    console.log('播放失败，需要用户交互');
+                    musicBtn.innerHTML = '⏯️';
+                    musicBtn.title = '点击页面任意位置后，再点击这里播放';
                 });
             }
-            document.removeEventListener('click', playOnInteraction);
+        });
+        
+        // 用户与页面交互后尝试自动播放
+        let userInteracted = false;
+        
+        const tryAutoplay = () => {
+            if (!userInteracted && !isPlaying) {
+                audio.play().then(() => {
+                    musicBtn.innerHTML = '🎵';
+                    isPlaying = true;
+                }).catch(() => {
+                    // 自动播放被阻止，等待用户手动点击
+                });
+            }
         };
         
-        document.addEventListener('click', playOnInteraction);
+        // 用户点击页面后尝试播放
+        document.addEventListener('click', function() {
+            if (!userInteracted) {
+                userInteracted = true;
+                tryAutoplay();
+            }
+        });
+        
+        // 监听音频事件
+        audio.addEventListener('play', () => {
+            musicBtn.innerHTML = '🎵';
+            isPlaying = true;
+        });
+        
+        audio.addEventListener('pause', () => {
+            musicBtn.innerHTML = '🔇';
+            isPlaying = false;
+        });
     }
-}
-
-// 页面加载完成后初始化
-document.addEventListener('DOMContentLoaded', () => {
-    window.backgroundMusic = new BackgroundMusic();
 });
