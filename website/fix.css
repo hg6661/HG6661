@@ -1,42 +1,113 @@
-/* website/fix.css - 纯净修复版 */
+/* website/fix.css - 同时解决黑色覆盖和标题模糊 */
 
-/* 1. 移除所有模糊效果 */
+/* 1. 解决黑色覆盖：修改背景但不移除暗色效果 */
+body {
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), /* 轻度黑色渐变 */
+        url('../assets/images/1.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    background-blend-mode: multiply !important; /* 改为multiply，不那么黑 */
+}
+
+/* 2. 强制标题清晰 */
+h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+    text-shadow: 
+        0 1px 3px #000000,
+        0 2px 6px #000000,
+        0 3px 9px #000000 !important; /* 三层黑色阴影确保清晰 */
+    font-weight: 800 !important;
+    opacity: 1 !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    position: relative;
+    z-index: 10;
+}
+
+/* 3. h1特别处理 */
+h1 {
+    background: linear-gradient(45deg, #ffffff, #ffffcc) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-size: 2.8rem !important;
+    text-shadow: 
+        0 2px 4px #000000,
+        0 4px 8px #000000,
+        0 6px 12px rgba(0, 0, 0, 0.8) !important;
+    letter-spacing: -0.5px !important;
+    line-height: 1.2 !important;
+}
+
+/* 4. h2标题 */
+h2 {
+    font-size: 2.2rem !important;
+    text-shadow: 
+        0 1px 2px #000000,
+        0 2px 4px #000000,
+        0 3px 6px rgba(0, 0, 0, 0.8) !important;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.3) !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 25px !important;
+}
+
+/* 5. h3标题 */
+h3 {
+    color: #ffcc00 !important;
+    font-size: 1.8rem !important;
+    text-shadow: 
+        0 1px 2px #000000,
+        0 2px 4px #000000 !important;
+    margin: 20px 0 15px 0 !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    padding: 10px 15px !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
+}
+
+/* 6. 正文内容清晰 */
+p, li, span, div {
+    color: #f0f0f0 !important;
+    text-shadow: 0 1px 2px #000000 !important;
+    opacity: 0.95 !important;
+    line-height: 1.6 !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+    padding: 5px 8px !important;
+    border-radius: 4px !important;
+}
+
+/* 7. 卡片样式调整 */
+.card {
+    background: rgba(30, 30, 46, 0.9) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 8. 返回按钮 */
+.back-btn {
+    background: rgba(65, 105, 225, 0.95) !important;
+    color: white !important;
+    border: 2px solid white !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 3px #000000 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 9. 移除所有模糊效果 */
 * {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     filter: none !important;
 }
 
-/* 2. 移除黑色遮罩 */
-body::before {
+/* 10. 移除伪元素 */
+body::before,
+body::after,
+.card::before,
+.card::after {
     display: none !important;
-}
-
-/* 3. 背景：只用图片，不加黑色渐变 */
-body {
-    background: url('../assets/images/1.jpg') !important;
-    background-size: cover !important;
-    background-attachment: fixed !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-}
-
-/* 4. 标题清晰化 */
-h1, h2, h3 {
-    color: white !important;
-    text-shadow: 0 2px 4px black !important;
-    font-weight: bold !important;
-}
-
-/* 5. 卡片半透明 */
-.card {
-    background: rgba(30, 30, 46, 0.85) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-/* 6. 返回按钮 */
-.back-btn {
-    background: rgba(65, 105, 225, 0.9) !important;
-    color: white !important;
-    border: 2px solid white !important;
 }
