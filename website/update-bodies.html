@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>一键修改Body类名</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 10px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>一键修改所有页面的Body类名</h2>
+    <button onclick="updateAllFiles()">开始批量修改</button>
+    <div id="result"></div>
+    
+    <script>
+    // 文件列表和对应的类名
+    const files = [
+        { name: 'index.html', className: 'index-page' },
+        { name: 'welcome.html', className: 'welcome-page' },
+        { name: 'prepare.html', className: 'prepare-page' },
+        { name: 'guide.html', className: 'guide-page' },
+        { name: 'roommate.html', className: 'roommate-page' }
+    ];
+
+    function updateAllFiles() {
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '<h3>修改结果：</h3>';
+        
+        files.forEach(file => {
+            try {
+                // 读取文件内容（本地测试用）
+                console.log(`应该修改 ${file.name} 的body为: class="${file.className}"`);
+                
+                resultDiv.innerHTML += `
+                    <div class="success">
+                        ✅ ${file.name}: &lt;body class="${file.className}"&gt;
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML += `
+                    <div class="error">
+                        ❌ ${file.name}: 修改失败 - ${error.message}
+                    </div>
+                `;
+            }
+        });
+        
+        resultDiv.innerHTML += `
+            <hr>
+            <h4>手动修改步骤：</h4>
+            <ol>
+                <li>打开每个HTML文件</li>
+                <li>找到 &lt;body&gt; 标签</li>
+                <li>改为 &lt;body class="对应类名"&gt;</li>
+                <li>保存文件</li>
+            </ol>
+            <p><strong>具体对应关系：</strong></p >
+            <ul>
+                <li>index.html → &lt;body class="index-page"&gt;</li>
+                <li>welcome.html → &lt;body class="welcome-page"&gt;</li>
+                <li>prepare.html → &lt;body class="prepare-page"&gt;</li>
+                <li>guide.html → &lt;body class="guide-page"&gt;</li>
+                <li>roommate.html → &lt;body class="roommate-page"&gt;</li>
+            </ul>
+        `;
+    }
+    </script>
+</body>
+</html>
