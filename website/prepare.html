@@ -7,6 +7,46 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fix.css">
     <style>
+/* 强制清晰样式 - 直接内联 */
+h1, h2, h3 {
+    color: white !important;
+    text-shadow: 0 2px 4px black !important;
+    font-weight: bold !important;
+    opacity: 1 !important;
+    backdrop-filter: none !important;
+    filter: none !important;
+}
+
+#page-title {
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, white, #e0e0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.content-box {
+    background: rgba(30, 30, 50, 0.95);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+}
+
+.info-item strong {
+    color: #ffcc00;
+    display: inline-block;
+    width: 80px;
+}
+</style>
+    <style>
         * {
             margin: 0;
             padding: 0;
