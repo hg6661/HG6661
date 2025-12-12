@@ -111,3 +111,88 @@ body::after,
 .card::after {
     display: none !important;
 }
+/* 这里是你现有的fix.css内容... */
+
+/* ====== 新增：页面专属彩色标题 ====== */
+
+/* 1. 先重置所有h1，移除模糊效果 */
+h1 {
+    background: none !important;
+    -webkit-text-fill-color: unset !important;
+    font-weight: 900 !important;
+    font-size: 2.8rem !important;
+    text-shadow: 
+        0 2px 4px #000000,
+        0 4px 8px #000000 !important;
+    position: relative;
+    z-index: 10;
+}
+
+/* 2. 默认标题颜色（如果没有特定页面类名） */
+h1 {
+    color: #FFFFFF !important;
+}
+
+/* 3. 根据body类名设置不同颜色 */
+body.index-page h1 {
+    color: #FF6B9D !important; /* 首页 - 粉色 */
+    text-shadow: 
+        0 0 15px #FF1493,
+        0 0 25px #FF69B4,
+        0 0 35px #DB7093,
+        0 2px 4px #000000 !important;
+}
+
+body.welcome-page h1 {
+    color: #E0B0FF !important; /* 欢迎页 - 淡紫色 */
+    text-shadow: 
+        0 0 15px #9370DB,
+        0 0 25px #8A2BE2,
+        0 0 35px #9932CC,
+        0 2px 4px #000000 !important;
+}
+
+body.prepare-page h1 {
+    color: #87CEEB !important; /* 准备页 - 淡蓝色 */
+    text-shadow: 
+        0 0 15px #1E90FF,
+        0 0 25px #4169E1,
+        0 0 35px #0000CD,
+        0 2px 4px #000000 !important;
+}
+
+body.guide-page h1 {
+    color: #98FB98 !important; /* 指南页 - 淡绿色 */
+    text-shadow: 
+        0 0 15px #32CD32,
+        0 0 25px #228B22,
+        0 0 35px #006400,
+        0 2px 4px #000000 !important;
+}
+
+body.roommate-page h1 {
+    color: #FFD700 !important; /* 舍友页 - 金色 */
+    text-shadow: 
+        0 0 15px #FFA500,
+        0 0 25px #FF8C00,
+        0 0 35px #FF4500,
+        0 2px 4px #000000 !important;
+}
+
+/* 4. 给标题添加装饰线 */
+h1::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: currentColor;
+    margin: 15px auto;
+    border-radius: 2px;
+    opacity: 0.8;
+}
+
+/* 5. 添加悬停效果 */
+h1:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
