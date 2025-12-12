@@ -1,125 +1,42 @@
-/* website/fix.css - 修复版 */
+/* website/fix.css - 纯净修复版 */
 
-/* 1. 完全移除所有元素的模糊效果 */
+/* 1. 移除所有模糊效果 */
 * {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     filter: none !important;
 }
 
-/* 2. 彻底移除黑色遮罩 */
+/* 2. 移除黑色遮罩 */
 body::before {
     display: none !important;
-    opacity: 0 !important;
-    background: transparent !important;
-    content: none !important;
 }
 
-/* 3. 调整body背景 */
+/* 3. 背景：只用图片，不加黑色渐变 */
 body {
-    background: 
-        linear-gradient(rgba(44, 62, 80, 0.85), rgba(26, 26, 46, 0.9)),
-        url('../assets/images/1.jpg') !important;
+    background: url('../assets/images/1.jpg') !important;
     background-size: cover !important;
     background-attachment: fixed !important;
     background-position: center !important;
-    background-blend-mode: overlay !important;
+    background-repeat: no-repeat !important;
 }
 
-/* 4. 特别处理标题，确保绝对清晰 */
-h1, h2, h3, h4, h5, h6 {
-    text-shadow: 
-        0 1px 0 rgba(0, 0, 0, 0.8),
-        0 2px 4px rgba(0, 0, 0, 0.9) !important;
-    opacity: 1 !important;
-    font-weight: 700 !important;
-    -webkit-font-smoothing: antialiased !important;
-    -moz-osx-font-smoothing: grayscale !important;
+/* 4. 标题清晰化 */
+h1, h2, h3 {
+    color: white !important;
+    text-shadow: 0 2px 4px black !important;
+    font-weight: bold !important;
 }
 
-/* 5. 针对h1标题的特殊处理（最大标题） */
-h1 {
-    background: linear-gradient(45deg, #ffffff, #f0f0ff) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    font-size: 2.8rem !important;
-    text-shadow: 
-        0 2px 4px rgba(0, 0, 0, 1),
-        0 4px 8px rgba(0, 0, 0, 0.8) !important;
-    letter-spacing: -0.5px !important;
-    line-height: 1.2 !important;
-}
-
-/* 6. 针对h2标题（中等标题） */
-h2 {
-    color: #ffffff !important;
-    font-size: 2.2rem !important;
-    text-shadow: 
-        0 1px 3px rgba(0, 0, 0, 1),
-        0 2px 6px rgba(0, 0, 0, 0.8) !important;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
-    padding-bottom: 10px !important;
-    margin-bottom: 25px !important;
-}
-
-/* 7. 针对h3标题（小标题） */
-h3 {
-    color: #ffcc00 !important;
-    font-size: 1.8rem !important;
-    text-shadow: 
-        0 1px 2px rgba(0, 0, 0, 1),
-        0 2px 4px rgba(0, 0, 0, 0.8) !important;
-    margin: 20px 0 15px 0 !important;
-}
-
-/* 8. 降低卡片模糊度 */
+/* 5. 卡片半透明 */
 .card {
-    backdrop-filter: blur(2px) !important;
-    -webkit-backdrop-filter: blur(2px) !important;
-    background: rgba(30, 30, 46, 0.92) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(30, 30, 46, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
-/* 9. 移除伪元素的模糊效果 */
-.card::before,
-.card::after,
-.card.welcome-card::before,
-.card.welcome-card::after {
-    display: none !important;
-}
-
-/* 10. 正文文字清晰化 */
-p, li, span, div {
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9) !important;
-    opacity: 0.95 !important;
-    color: #e0e0e0 !important;
-    line-height: 1.6 !important;
-}
-
-/* 11. 内容区域更清晰 */
-.content, .step, .tip {
-    backdrop-filter: none !important;
-    background: rgba(40, 40, 60, 0.9) !important;
-}
-
-/* 12. 返回按钮清晰 */
+/* 6. 返回按钮 */
 .back-btn {
     background: rgba(65, 105, 225, 0.9) !important;
     color: white !important;
     border: 2px solid white !important;
-    font-weight: 600 !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8) !important;
-}
-
-/* 13. 移除容器背景 */
-.container::before {
-    display: none !important;
-}
-
-/* 14. 提高整体亮度 */
-.container {
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 20px;
-    padding: 20px;
 }
