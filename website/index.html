@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神奇201-2</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 卡片样式 */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border-color: #764ba2;
+        }
+        
+        /* 欢迎卡片特殊样式 */
+        .card:first-child {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .card:first-child h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .card:first-child p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        /* 其他卡片样式 */
+        .card h2 {
+            color: #5d5fef;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+            font-size: 1rem;
+        }
+        
+        .card li:last-child {
+            border-bottom: none;
+        }
+        
+        .card strong {
+            color: #764ba2;
+            font-weight: 600;
+        }
+        
+        /* 图标样式 */
+        .icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-color: #764ba2;
+            border-radius: 50%;
+        }
+        
+        .card:first-child .icon {
+            background-color: white;
+        }
+        
+        /* 链接样式 */
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .card {
+                padding: 20px;
+            }
+            
+            .card:first-child h1 {
+                font-size: 2rem;
+            }
+            
+            .card h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 欢迎卡片 -->
+        <a href=" " class="card-link">
+            <div class="card">
+                <h1><span class="icon"></span>欢迎来到神奇201-2！</h1>
+                <p>这里是神奇宝贝集中营</p >
+            </div>
+        </a >
+        
+        <!-- 睡前准备 -->
+        <a href="prepare.html" class="card-link">
+            <div class="card">
+                <h2><span class="icon"></span>准备</h2>
+                <p>通宵前的准备工作和小贴士，让每个夜晚都舒适安宁。</p >
+                <ul>
+                    <li><strong>整理床铺</strong>：调整枕头高度，预备玩手机姿势</li>
+                    <li><strong>环境准备</strong>：调节室温，打开空调</li>
+                    <li><strong>物品准备</strong>：一杯冰水，防止犯困</li>
+                    <li><strong>设备管理</strong>：打开电子设备，看看谁最闪耀</li>
+                </ul>
+            </div>
+        </a >
+        
+        <!-- 通宵指南 -->
+        <a href="guide.html" class="card-link">
+            <div class="card">
+                <h2><span class="icon"></span>通宵指南</h2>
+                <p>如何快速通宵的技巧分享，告别瞌睡困扰。</p >
+                <ul>
+                    <li><strong>刷视频法</strong>：玩转抖音B站</li>
+                    <li><strong>游戏增压</strong>：给自己上点队友压力</li>
+                    <li><strong>白噪音</strong>：舍友呼噜声辅助</li>
+                    <li><strong>渐进放松</strong>：从脚到头逐步放松肌肉</li>
+                </ul>
+            </div>
+        </a >
+        
+        <!-- 神奇舍友 -->
+        <a href="roommate.html" class="card-link">
+            <div class="card">
+                <h2><span class="icon"></span>神奇舍友</h2>
+                <p>我们的宿舍成员介绍</p >
+                <ul>
+                    <li><strong>周浩宇</strong>：呼噜王子，三角洲爱好者</li>
+                    <li><strong>更多舍友</strong>：点击查看完整介绍</li>
+                </ul>
+            </div>
+        </a >
+    </div>
+
+    <script>
+        // 添加点击效果
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
